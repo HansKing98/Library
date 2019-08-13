@@ -1,17 +1,11 @@
 <script>
-import {get} from './util'
+import {get} from '@/utils'
+import wx from '@/utils/wx'
+
 export default {
   async created () {
     const res = await get('/weapp/demo')
-    console.log('123', res);
-    
-    // mpvue.request({
-    //   url: config.host + '/weapp/demo',
-    //   success: function (res) {
-    //     console.log(res)
-    //   }
-    // })
-    console.log('xcx created')
+    // console.log('get data : ', res)
   },
   log () {
     console.log(`log at:${Date.now()}`)
