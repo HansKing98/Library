@@ -28,7 +28,7 @@ export const setStorage = (theKey, theValue) => new Promise((resolve, reject) =>
 export const getSetting = () => new Promise((resolve, reject) => {
   wx.getSetting({
     success (res) {
-      resolve(res,123)
+      resolve(res)
     },
     fail (e) {
       reject(e)
