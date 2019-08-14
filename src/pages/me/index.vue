@@ -1,7 +1,14 @@
 <template>
   <div>
-    me
-     <button open-type="getUserInfo" @getuserinfo="bindGetUserInfo" @click="getUserInfo1">获取权限</button>
+    <div class="container">
+      <div class="userinfo" v-if="userInfo">
+        <img :src="userInfo.avatarUrl" alt="">
+        <p>{{userInfo.nickName}}</p>
+      </div>
+      <div v-else>
+        <button open-type="getUserInfo" @getuserinfo="bindGetUserInfo" @click="getUserInfo1">获取权限</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -29,14 +36,17 @@ export default {
   components: {
 
   },
-  onLoad () {
+  async onLoad () {
     // 这个时候 不行，可能与生命周期有关系
     // this.getSetting()
   },
 
   async onShow () {
+    console.log('userInfo', this.userInfo)
     // 查看用户信息 缓存
     let user = mpvue.getStorageSync('userInfo')
+    this.userInfo = user
+
     if (!user) {
       // 获取 code
       const login = await wx.login()
@@ -48,8 +58,8 @@ export default {
       if (setting.authSetting['scope.userInfo']) {
         const getUserInfo = await wx.getUserInfo()
         console.log(getUserInfo.userInfo)
-        console.log(this.$store.state.code)
-        // 缓存 userInfo
+        // console.log('2.5',this.$store.state.code)
+        // 缓存 userInfo     
         mpvue.setStorageSync('userInfo', getUserInfo.userInfo)
         this.userInfo = getUserInfo.userInfo
         console.log('用户已经授权过')
@@ -121,6 +131,19 @@ export default {
 }
 </script>
 
-<style lang="sass">
-
+<style lang="scss">
+.container {
+  padding: 30rpx;
+  .userinfo{
+    margin-top: 100rpx;
+    text-align: center;
+    img{
+      background-color: rgb(48, 128, 93);
+      width: 150rpx;
+      height: 150rpx;
+      margin: 20rpx;
+      border-radius: 50%;
+    }
+  }
+}
 </style>
