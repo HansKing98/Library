@@ -8,11 +8,16 @@
       <div v-else>
         <button open-type="getUserInfo" @getuserinfo="bindGetUserInfo" @click="getUserInfo1">获取权限</button>
       </div>
+      <YearProgress></YearProgress>
+      <div>
+        <button @click="scanBook">添加图书</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import YearProgress from '@/components/YearProgress'
 import config from '@/config'
 import {
   showSuccess,
@@ -21,6 +26,9 @@ import {
 import wx from '@/utils/wx'
 
 export default {
+  components: {
+    YearProgress
+  },
   data () {
     return {
       appid: config.appid,
@@ -32,9 +40,6 @@ export default {
       session_key: '',
       userInfo: {}
     }
-  },
-  components: {
-
   },
   async onLoad () {
     // 这个时候 不行，可能与生命周期有关系
@@ -59,7 +64,7 @@ export default {
         const getUserInfo = await wx.getUserInfo()
         console.log(getUserInfo.userInfo)
         // console.log('2.5',this.$store.state.code)
-        // 缓存 userInfo     
+        // 缓存 userInfo
         mpvue.setStorageSync('userInfo', getUserInfo.userInfo)
         this.userInfo = getUserInfo.userInfo
         console.log('用户已经授权过')
@@ -99,6 +104,13 @@ export default {
     }
   },
   methods: {
+    scanBook () {
+      mpvue.scanCode({
+        success (res) {
+          console.log(res)
+        }
+      })
+    },
     getUserInfo1 () {
       console.log('click事件首先触发')
       // 判断小程序的API，回调，参数，组件等是否在当前版本可用。  为false 提醒用户升级微信版本
@@ -115,8 +127,8 @@ export default {
         // 用户按了允许授权按钮
         console.log('用户按了允许授权按钮')
         // 刷新页面
-        // console.log(getCurrentPages()) 
-        
+        // console.log(getCurrentPages())
+
         let page = getCurrentPages().pop()
         page.onShow()
       } else {
@@ -138,7 +150,7 @@ export default {
     margin-top: 100rpx;
     text-align: center;
     img{
-      background-color: rgb(48, 128, 93);
+      background-color: rgb(255, 203, 205);
       width: 150rpx;
       height: 150rpx;
       margin: 20rpx;
