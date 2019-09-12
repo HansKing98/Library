@@ -10,7 +10,7 @@
       </div>
       <YearProgress></YearProgress>
       <div>
-        <button @click="scanBook">添加图书</button>
+        <button class="btn" @click="scanBook">添加图书</button>
       </div>
     </div>
   </div>
@@ -21,7 +21,9 @@ import YearProgress from '@/components/YearProgress'
 import config from '@/config'
 import {
   showSuccess,
-  showLoading
+  showLoading,
+  showModal,
+  post
 } from '@/utils'
 import wx from '@/utils/wx'
 
@@ -104,10 +106,31 @@ export default {
     }
   },
   methods: {
+    async addBook (ISBN) {
+      // ISBN = '9787547733219'
+      const res = await post('/addbook', {
+        ISBN,
+        openid: this.openid
+      })
+      console.log('1',res);
+      console.log('2',res.code);
+      console.log('3',res.data);
+      
+      if (res.code == 0 && res.data.title) {
+        showModal('添加成功', `《${res.data.title}》`)
+      } else {
+        showModal('添加失败', `${res.data.msg}`)
+      }
+    },
     scanBook () {
+      var self = this
       mpvue.scanCode({
         success (res) {
-          console.log(res)
+          if (res.result) {
+            // console.log(res)
+            showLoading('正在核验数据...')
+            self.addBook(res.result)
+          }
         }
       })
     },
