@@ -15,7 +15,7 @@ export default {
       this.user_info = mpvue.getStorageSync('user_info')
       await wx.request({
         url: config.host + '/cSession',
-        data: {'openid': this.openid,'session_key': this.session_key,'user_info': this.userInfo},
+        data: {'openid': this.openid, 'session_key': this.session_key, 'user_info': this.userInfo},
         method: 'get'
       })
     }

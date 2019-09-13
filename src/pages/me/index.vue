@@ -45,7 +45,7 @@ export default {
       openid: '',
       session_key: '',
       userInfo: {
-        avatarUrl:'/static/img/unlogin.png'
+        avatarUrl: '/static/img/unlogin.png'
       }
     }
   },
@@ -64,7 +64,7 @@ export default {
         ISBN,
         openid: this.openid
       })
-      if (res.code == 0 && res.data.title) {
+      if (res.code === 0 && res.data.title) {
         showModal('添加成功', `《${res.data.title}》`)
       } else {
         showModal('添加失败', `${res.data.msg}`)
@@ -100,7 +100,7 @@ export default {
         // console.log('用户按了拒绝按钮')
       }
     },
-    async login(){
+    async login () {
       this.openid = mpvue.getStorageSync('openid')
       const login = await wx.login()
       this.code = login.code
@@ -131,15 +131,15 @@ export default {
         console.log('已登录')
       }
     },
-    async getOpenid(){
-      console.log('getopenid');
-      
+    async getOpenid () {
+      console.log('getopenid')
+
       const code2session = await wx.request({
         url: config.host + '/code2session',
         data: {
           'appid': this.appid,
           'secret': this.secret,
-          'code': this.code,
+          'code': this.code
         },
         method: 'get'
       })
@@ -147,10 +147,10 @@ export default {
       this.session_key = code2session.data.session_key
       mpvue.setStorageSync('openid', this.openid)
     },
-    async laycSession(){
+    async laycSession () {
       await wx.request({
         url: config.host + '/cSession',
-        data: {'openid': this.openid,'session_key': this.session_key,'user_info': this.userInfo},
+        data: {'openid': this.openid, 'session_key': this.session_key, 'user_info': this.userInfo},
         method: 'get'
       })
     }

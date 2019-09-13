@@ -9,17 +9,17 @@
 
 <script>
 export default {
-    props:{
-        value:{
-            type:[Number,String],
-            default:'0'
-        }
-    },
-    computed:{
-        style(){
-            return `width:${this.value/2}em`
-        }
+  props: {
+    value: {
+      type: [Number, String],
+      default: '0'
     }
+  },
+  computed: {
+    style () {
+      return `width:${this.value / 2}em`
+    }
+  }
 }
 </script>
 

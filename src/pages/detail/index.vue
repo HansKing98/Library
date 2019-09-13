@@ -5,29 +5,29 @@
 </template>
 
 <script>
-import {get} from "@/utils";
+import {get} from '@/utils'
 import BookInfo from '@/components/BookInfo'
 export default {
-  components:{
+  components: {
     BookInfo
   },
-  data(){
-    return{
-      bookid:'',
-      info:''
+  data () {
+    return {
+      bookid: '',
+      info: ''
     }
   },
-  methods:{
-    async getDetail(){
-      const info = await get('/bookdetail',{id:this.bookid})
+  methods: {
+    async getDetail () {
+      const info = await get('/bookdetail', {id: this.bookid})
       wx.setNavigationBarTitle({
         title: info.data.title
       })
       this.info = info.data
-      console.log('info1',this.info)
+      console.log('info1', this.info)
     }
   },
-  mounted(){
+  mounted () {
     this.bookid = this.$root.$mp.query.id
     this.getDetail()
   }

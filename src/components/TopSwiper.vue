@@ -27,21 +27,21 @@
 
 <script>
 export default {
-    props:['tops'],
-    computed:{
-        imgUrl(){
-            const res = this.tops
-            return [res.slice(0,3),res.slice(3,6),res.slice(6)]
-        }
-    },
-    methods:{
-        goNav_detail(item){
-            // var that = this
-            wx.navigateTo({
-                url: '/pages/detail/main?id=' + item.id
-            })
-        }
+  props: ['tops'],
+  computed: {
+    imgUrl () {
+      const res = this.tops
+      return [res.slice(0, 3), res.slice(3, 6), res.slice(6)]
     }
+  },
+  methods: {
+    goNav_detail (item) {
+      // var that = this
+      wx.navigateTo({
+        url: '/pages/detail/main?id=' + item.id
+      })
+    }
+  }
 }
 </script>
 

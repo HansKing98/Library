@@ -39,19 +39,20 @@
 <script>
 import Rate from '@/components/Rate'
 export default {
-    components:{
-        Rate
-    },
-    props:['info'],
-    mounted(){
-        console.log('info2', this.info)
-    }
+  components: {
+    Rate
+  },
+  props: ['info'],
+  mounted () {
+    console.log('info2', this.info)
+  }
 }
 </script>
 
 <style lang="scss">
 .bookinfo{
     font-size: 14px;
+    color: #3f3f3f;
     .description{
         padding: 0 20rpx;
         margin-top: 20rpx;

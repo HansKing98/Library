@@ -30,7 +30,7 @@
                         {{book.publisher}}
                     </div>
                     <div class="right">
-                        <!-- 王昊 -->
+                        {{book.user_info.nickName}}
                     </div>
                 </div>
             </div>
@@ -41,29 +41,29 @@
 <script>
 import Rate from '@/components/Rate'
 export default {
-    components:{
-        Rate
-    },
-    props:['book'],
-    computed:{
-        detailUrl(){
-            return '/pages/detail/main?id=' + this.book.id
-        }
-    },
-    methods:{
-        goNav_detail(){
-            // var that = this
-            wx.navigateTo({
-                url: this.detailUrl
-            })
-        },
-        prebiew(){
-            wx.previewImage({
-                current:this.book.image,
-                urls:[this.book.image]
-            })
-        }
+  components: {
+    Rate
+  },
+  props: ['book'],
+  computed: {
+    detailUrl () {
+      return '/pages/detail/main?id=' + this.book.id
     }
+  },
+  methods: {
+    goNav_detail () {
+      // var that = this
+      wx.navigateTo({
+        url: this.detailUrl
+      })
+    },
+    prebiew () {
+      wx.previewImage({
+        current: this.book.image,
+        urls: [this.book.image]
+      })
+    }
+  }
 }
 </script>
 
@@ -74,6 +74,7 @@ export default {
     overflow: hidden;
     margin: 10rpx 0;
     font-size: 14px;
+    color: #3f3f3f;
     .thumb{
         width: 180rpx;
         height: 180rpx;
