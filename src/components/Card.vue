@@ -5,10 +5,11 @@
                 <img :src="book.image"
                         class="image"
                         mode="aspectFill"
+                        @click.stop="prebiew"
                 >
             </div>
             <div class="detail">
-                <div class="row ">
+                <div class="row text-primary">
                     <div class="left">
                         {{book.title}}
                     </div>
@@ -54,6 +55,12 @@ export default {
             // var that = this
             wx.navigateTo({
                 url: this.detailUrl
+            })
+        },
+        prebiew(){
+            wx.previewImage({
+                current:this.book.image,
+                urls:[this.book.image]
             })
         }
     }

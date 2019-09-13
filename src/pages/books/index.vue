@@ -21,7 +21,8 @@ export default {
     return {
       books:[],
       page:0,
-      more:true
+      more:true,
+      tops:''
     }
   },
   methods:{
@@ -48,15 +49,7 @@ export default {
     },
     async getTop(){
       const tops = await get('/top')
-      const tops_1 = tops.data.list
-      this.tops =[tops_1.slice(0,3),tops_1.slice(3,6),tops_1.slice(6)]
-      console.log('tops_1',tops_1)
-      console.log('tops',this.tops)
-      
-      // return [res.slice(0,3),res.slice(3,6),res.slice(6)]
-
-      // console.log('tops.length',this.tops.length)
-      // console.log('type',typeof(this.tops))
+      this.tops = tops.data.list
     }
   },
   onPullDownRefresh(){

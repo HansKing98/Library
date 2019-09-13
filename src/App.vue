@@ -1,11 +1,24 @@
 <script>
+import config from '@/config'
 export default {
-  async created () {
-    // const res = await get('/weapp/demo')
-    // console.log('get data : ', res)
+  data () {
+    return {
+      openid: '',
+      session_key: '',
+      userInfo: {}
+    }
   },
-  log () {
-    console.log(`log at:${Date.now()}`)
+  async created () {
+    this.openid = mpvue.getStorageSync('openid')
+    if (this.openid) {
+      this.session_key = mpvue.getStorageSync('session_key')
+      this.user_info = mpvue.getStorageSync('user_info')
+      await wx.request({
+        url: config.host + '/cSession',
+        data: {'openid': this.openid,'session_key': this.session_key,'user_info': this.userInfo},
+        method: 'get'
+      })
+    }
   }
 }
 </script>
