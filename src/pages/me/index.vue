@@ -8,7 +8,7 @@
       <div class="userinfo" v-else>
         <img src="/static/img/unlogin.png" alt="">
         <div>
-          <button open-type="getUserInfo" @getuserinfo="bindGetUserInfo" @click="getUserInfo1">点击登录</button>
+          <button open-type="getUserInfo" @getuserinfo="bindGetUserInfo" @click="getUserInfo1">登录录入图书</button>
         </div>
       </div>
 

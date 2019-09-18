@@ -49,4 +49,10 @@ export default {
   background-color: #ea5149;
   box-shadow: rgba(255, 113, 77, 0.637) 20rpx 10rpx 30rpx 1rpx ;
 }
+.btn-primary{
+  margin: 20rpx auto;
+  width: 80%;
+  background-color: #1B9CFC;
+  box-shadow: rgba(103, 143, 255, 0.637) 20rpx 10rpx 30rpx 1rpx ;
+}
 </style>

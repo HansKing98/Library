@@ -1,20 +1,23 @@
 <template>
-  <div>
+  <div v-if="books.length">
     <Card v-for="(book, index) in books" :key='index' :book='book'></Card>
     <p class="text-footer" v-if="!more">
       没有更多数据
     </p>
+  </div>
+  <div v-else>
+    <EmptyCard></EmptyCard>
   </div>
 </template>
 
 <script>
 import { get } from '@/utils'
 import Card from '@/components/Card'
-import TopSwiper from '@/components/TopSwiper'
+import EmptyCard from '@/components/EmptyCard'
 export default {
   components: {
     Card,
-    TopSwiper
+    EmptyCard
   },
   data () {
     return {
@@ -27,11 +30,13 @@ export default {
   },
   methods: {
     async getList (init) {
+      this.openid = mpvue.getStorageSync('openid')
       if (init) {
         this.page = 0
         this.more = true
       }
       wx.showNavigationBarLoading()
+      // const books = await get('/mybooklist', {page: this.page, openid: this.openid})
       const books = await get('/mybooklist', {page: this.page, openid: this.openid})
 
       if (books.data.list.length < 10 && this.page > 0) {
@@ -67,6 +72,7 @@ export default {
   },
   mounted () {
     this.openid = mpvue.getStorageSync('openid')
+    console.log('openid', this.openid);
     this.getList(true)
     this.getTop()
   }

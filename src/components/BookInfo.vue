@@ -33,7 +33,7 @@
       <div class="description">
           <p :key="i" v-for="(description,i) in info.description">{{description}}</p>
       </div>
-      <button class="btn btn-red" @click="go_nav">查看豆瓣读书详情</button>
+      <!-- <button class="btn btn-red" @click="go_nav">查看豆瓣读书详情</button> -->
   </div>
 </template>
 
