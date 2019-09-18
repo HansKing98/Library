@@ -3,11 +3,12 @@
     "pages/books/main",
     "pages/comment/main",
     "pages/me/main",
-    "pages/detail/main"
+    "pages/detail/main",
+    "pages/mybook/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ea5149",
+    "navigationBarBackgroundColor": "#1B9CFC",
     "navigationBarTitleText": "书一二",
     "navigationBarTextStyle": "white"
   },
@@ -20,13 +21,18 @@
     "list": [{
       "text": "首页",
       "pagePath": "pages/books/main",
-      "iconPath": "static/tabs/home.png",
-      "selectedIconPath": "static/tabs/home-active.png"
+      "iconPath": "static/tabs/books.png",
+      "selectedIconPath": "static/tabs/books_act.png"
+    }, {
+      "text": "藏书",
+      "pagePath": "pages/mybook/main",
+      "iconPath": "static/tabs/mybook.png",
+      "selectedIconPath": "static/tabs/mybook_act.png"
     }, {
       "text": "我的",
       "pagePath": "pages/me/main",
       "iconPath": "static/tabs/me.png",
-      "selectedIconPath": "static/tabs/me-active.png"
+      "selectedIconPath": "static/tabs/me_act.png"
     }]
   }
 }

@@ -9,11 +9,11 @@
                 >
             </div>
             <div class="detail">
-                <div class="row text-primary">
+                <div class="row title">
                     <div class="left">
                         {{book.title}}
                     </div>
-                    <div class="right">
+                    <div class="right text-red">
                         {{book.rate}} <Rate :value="book.rate"></Rate>
                     </div>
                 </div>
@@ -91,6 +91,11 @@ export default {
         .row{
             line-height: 40rpx;
             margin-bottom: 6rpx;
+        }
+        .title{
+            font-size: 15px;
+            color: #1a1a1a;
+            font-weight: bold;
         }
         .right{
             float: right;

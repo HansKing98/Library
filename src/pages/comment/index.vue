@@ -1,6 +1,6 @@
 <template>
   <div>
-    comment
+  <web-view src="https://book.douban.com/subject/27060640/"></web-view>
   </div>
 </template>
 
@@ -12,14 +12,15 @@ export default {
 
   data () {
     return {
-
+      bookid: '',
     }
   },
   computed: {
 
   },
-  created () {
-
+  mounted () {
+    this.altUrl = this.$root.$mp.query.altUrl
+    this.getDetail()
   }
 }
 </script>
